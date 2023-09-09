@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import cgi 
+import myhandler 
 
 #connecting to sqlite3 database
 con = sqlite3.connect("medihacks.db")
@@ -13,6 +14,7 @@ password = form.getvalue('password')
 
 class Person:
 
+    myhandler = MyHandler()
     tot_user = 0 #keep track of users joined, use to assign an web_id to each user
     
     def __init__(self, username, name, password):
@@ -27,15 +29,15 @@ class Person:
         
         try: 
             #creating table for students
-            cur.execute("CREATE TABLE students (WEB_ID int, username varchar(255), name varchar(255), institution varchar(255))")
+            cur.execute("CREATE TABLE students (username varchar(255), name varchar(255), institution varchar(255))")
         except sqlite3.OperationalError: 
             #table already exists in the database
             print("students already exists")
 
-        cur.execute("INSERT INTO students (WEB_ID, username, name, institution) VALUES (%s, %s, %s, %s);", 
-            (self.WEB_ID, self.username, self.name, self.institution))
+        cur.execute("INSERT INTO students (username, name, institution) VALUES (%s, %s, %s);", 
+            (self.username, self.name, self.institution))
             
-    def login(self, password):
+    def login(self):
         # Check the provided password against the user's stored password
         try:
             db = mysql.connector.connect(
@@ -59,10 +61,12 @@ class Person:
             
         if password == self.password:
             self.logged_in = True
+            return True
              # Successful login; redirect to a dashboard or another page
             print("Location: dashboard.py")  # Redirect to the dashboard
         else:
             self.logged_in = False
+            return False
             # Failed login; redirect back to the login page with an error message
             print("Location: login.html?error=1")
     
