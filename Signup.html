@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up </title>
+    <link rel="stylesheet" href="Stylesheets/signup-stylesheet.css">
+    <script src="https://kit.fontawesome.com/b2aa740ecd.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    
+</head>
+<body>
+    <div class="page-container">
+        <div class="center-container">
+            <div class="title">
+                <h1>Choose an Account Type</h1>
+            </div>
+            
+            <div class="accounts">
+                <button class="account-boxes" onclick= ' univ_sign()'>
+                    <i  class="fa-solid fa-building-columns "></i>
+                    <p>University</p>
+                </button>
+                
+                <button class="account-boxes" onclick= "indiv_sign()">
+                    <i  class="fa-solid fa-person " ></i>
+                    <p>Individual</p>
+                </button>
+            </div>
+       
+            <form class="login">
+                <div id="univ" class="univ_name">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <label class="in-field">
+                        <input class="credent" type="name" required placeholder="University Name"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Email</span>--->
+                    </label>
+                </div>
+                <div id = "indiv_nfirst" class="indiv_name">
+                    <i class="fa-solid fa-person-circle-question"></i>
+                    <label class="in-field">
+                        <input class="credent" type="name" required placeholder="First Name"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Email</span>--->
+                    </label>
+                </div>
+                <div id = "indiv_nlast"class="indiv_name">
+                    <i class="fa-solid fa-person-circle-question"></i>
+                    <label class="in-field">
+                        <input class="credent" type="name" required placeholder="Last Name"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Email</span>--->
+                    </label>
+                </div>
+                <div class="name">
+                    <i class="fa-solid fa-user"></i>
+                    <label class="in-field">
+                        <input class="credent" type="name" required placeholder="Username"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Email</span>--->
+                    </label>
+                </div>
+                <div class="email">
+                    <i class="fa-solid fa-envelope"></i>
+                    <label class="in-field">
+                        <input class="credent" type="email" required placeholder="Email"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Email</span>--->
+                    </label>
+                </div>
+                    
+                <div class="password">
+                    <i class="fa-solid fa-lock"></i>
+                    <label class="in-field">
+                        <input class="credent" type="password" required placeholder="Password"/>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                        <!---<span class="placeholder">Password</span>--->
+                    </label>
+                    
+                </div>
+
+                <input class= "signup"type="submit" value="Sign up">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
