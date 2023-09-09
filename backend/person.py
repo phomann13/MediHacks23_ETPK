@@ -1,19 +1,9 @@
+import mysql.connector 
 import cgi 
-import sqlite3
 
 #make in individual methods
 form = cgi.FieldStorage() 
 
-# Connect to an SQLite database (creates or opens the 'mydatabase.db' file)
-#Make in individual methods
-conn = sqlite3.connect('mydatabase.db')
-cursor = conn.cursor()
-#DON'T FORGET conn.close()!!!
-
-
-#data1 = form.getvalue('__')
-    #data2 = form.getvalue('__')
-    #....
 
 class Person:
     tot_user = 0 #keep track of users joined, use to assign an web_id to each user
@@ -26,7 +16,19 @@ class Person:
         self.name = name
         self.institution = None 
         self.post_dict = {}
-       
+        
+        db = mysql.connector.connect(
+            host="localhost",
+            user="root", 
+            passwd="Tomh1015!",
+            database="medihacks23"
+            )
+
+        cursor = db.cursor()
+
+        cursor.execute("INSERT INTO students VALUES (%i, %s, %s, %s); ", 
+                (self.WEB_ID, self.username, self.name, self.institution))
+        
     
     def change_name(self, new_name):
         self.name = new_name
