@@ -1,13 +1,10 @@
 import os
-import mysql.connector 
+import sqlite3
 import cgi 
 
-
-
-DB_HOST = os.environ.get('DB_HOST', 'localhost')  # Defaults to 'localhost' if not found
-DB_USER = os.environ.get('DB_USER', 'root')  # Defaults to 'root' if not found
-DB_PASSWORD = os.environ.get('DB_PASSWORD', '')  # Defaults to an empty string if not found
-DB_NAME = os.environ.get('DB_NAME', 'medihacks23')  # Defaults to 'medihacks23' if not found
+#connecting to sqlite3 database
+con = sqlite3.connect("medihacks.db")
+cur = con.cursor()
 
 #make in individual methods
 form = cgi.FieldStorage() 
@@ -28,25 +25,15 @@ class Person:
         self.password = password
         self.logged_in = False
         
-        try:
-            db = mysql.connector.connect(
-                host=DB_HOST,
-                user=DB_USER,
-                passwd=DB_PASSWORD,
-                database=DB_NAME
-                )
-            
-            cursor = db.cursor()
+        try: 
+            #creating table for students
+            cur.execute("CREATE TABLE students (WEB_ID int, username varchar(255), name varchar(255), institution varchar(255))")
+        except sqlite3.OperationalError: 
+            #table already exists in the database
+            print("students already exists")
 
-            cursor.execute("INSERT INTO students (WEB_ID, username, name, institution) VALUES (%s, %s, %s, %s);", 
-                    (self.WEB_ID, self.username, self.name, self.institution))
-            db.commit()
-
-        except mysql.connector.Error as err:
-            print(f"Error: {err}")
-        finally:
-            cursor.close()
-            db.close()
+        cur.execute("INSERT INTO students (WEB_ID, username, name, institution) VALUES (%s, %s, %s, %s);", 
+            (self.WEB_ID, self.username, self.name, self.institution))
             
     def login(self, password):
         # Check the provided password against the user's stored password
