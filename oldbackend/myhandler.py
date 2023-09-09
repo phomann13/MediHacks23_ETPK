@@ -1,29 +1,48 @@
 import http.server
 import socketserver
 
-PORT = 8000
-
 class MyHandler(http.server.SimpleHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == '/login':
-            # Perform authentication checks here
-            authenticated = True  # Example: Set this to True if authentication succeeds
+    # Define a dictionary to map routes to functions
+    routes = {
+        '/login': handle_login,
+        '/dashboard': handle_dashboard,
+        '/redirect': handle_redirect,
+        
+    }
 
-            if authenticated:
-                # Redirect to the dashboard upon successful login
-                self.send_response(302)
-                self.send_header('Location', '/dashboard')
-                self.end_headers()
-            else:
-                # Redirect to the login page with an error message
-                self.send_response(302)
-                self.send_header('Location', '/login_page?error=True')
-                self.end_headers()
+    def do_GET(self):
+        # Get the requested path
+        path = self.path
+
+        # Check if the path is in the routes dictionary
+        if path in self.routes:
+            # Call the corresponding function or handler
+            self.routes[path](self)
         else:
             # Handle other routes here
             super().do_GET()
 
+    # Define handlers for specific routes
+    def handle_login(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write(b'Login Page')
+
+    def handle_dashboard(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write(b'Dashboard Page')
+    
+    def handle_redirect(self):
+        # Perform the redirection
+        self.send_response(302)  # 302 Found
+        self.send_header('Location', '/dashboard')  # Redirect to /dashboard
+        self.end_headers()
+        
 def main():
+    PORT = 8000
     with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
         print(f"Serving at http://localhost:{PORT}")
         httpd.serve_forever()

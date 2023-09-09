@@ -1,12 +1,12 @@
 #This is the Institution Class, where the user can choose their insituition (educational),
 #And rate their mental health experience from 1-10
 
-
 class Institution:
 
     def __init__(self, name):
         self.name = name
         self.students = {}  # Using a dictionary to store students
+
 
     def add_student(self, student):
         """Add a student to this institution."""
