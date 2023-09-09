@@ -11,19 +11,22 @@ DB_NAME = os.environ.get('DB_NAME', 'medihacks23')  # Defaults to 'medihacks23' 
 
 #make in individual methods
 form = cgi.FieldStorage() 
-
+username = form.getvalue('username')
+password = form.getvalue('password')
 
 class Person:
+
     tot_user = 0 #keep track of users joined, use to assign an web_id to each user
     
-    def __init__(self, username, name):
-        self.WEB_ID = Person.tot_user 
+    def __init__(self, username, name, password):
         Person.tot_user += 1
         
         self.username = username 
         self.name = name
         self.institution = None 
         self.post_dict = {}
+        self.password = password
+        self.logged_in = False
         
         try:
             db = mysql.connector.connect(
@@ -45,22 +48,35 @@ class Person:
             cursor.close()
             db.close()
             
+    def login(self, password):
+        # Check the provided password against the user's stored password
+        if password == self.password:
+            self.logged_in = True
+             # Successful login; redirect to a dashboard or another page
+            print("Location: dashboard.py")  # Redirect to the dashboard
+        else:
+            self.logged_in = False
+            # Failed login; redirect back to the login page with an error message
+            print("Location: login.html?error=1")
     
     def change_name(self, new_name):
-        self.name = new_name
+        if self.logged_in:
+            self.name = new_name
+        else:
+            return "You must be logged in to change your name."
         
     def get_name(self):
         return self.name
         
     def change_username(self, new_username):
-        self.username = new_username 
+        if self.logged_in:
+            self.username = new_username 
+        else:
+            return "You must be logged in to change your name."
     
     def get_username(self):
         return self.username 
-    
-    def get_WEB_ID(self):
-       return self.WEB_ID 
-   
+ 
     def get_post(self, title):
         return self.post_dict[title]
     
