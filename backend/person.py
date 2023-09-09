@@ -1,9 +1,21 @@
-class Person:
-    import #the file with the form info
-    form = #the file with the form info.FieldStorage()
-    #data1 = form.getvalue('__')
+import cgi 
+import sqlite3
+
+#make in individual methods
+form = cgi.FieldStorage() 
+
+# Connect to an SQLite database (creates or opens the 'mydatabase.db' file)
+#Make in individual methods
+conn = sqlite3.connect('mydatabase.db')
+cursor = conn.cursor()
+#DON'T FORGET conn.close()!!!
+
+
+#data1 = form.getvalue('__')
     #data2 = form.getvalue('__')
     #....
+
+class Person:
     tot_user = 0 #keep track of users joined, use to assign an web_id to each user
     
     def __init__(self, username, name):

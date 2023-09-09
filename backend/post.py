@@ -1,3 +1,15 @@
+import cgi 
+import sqlite3
+
+#make in individual methods
+form = cgi.FieldStorage() 
+
+# Connect to an SQLite database (creates or opens the 'mydatabase.db' file)
+#Make in individual methods
+conn = sqlite3.connect('mydatabase.db')
+cursor = conn.cursor()
+#DON'T FORGET conn.close()!!!
+
 class Post:
     
     def __init__(self, ___): 
