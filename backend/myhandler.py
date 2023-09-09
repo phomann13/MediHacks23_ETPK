@@ -6,6 +6,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
     routes = {
         '/login': handle_login,
         '/dashboard': handle_dashboard,
+        '/redirect': handle_redirect,
+        
     }
 
     def do_GET(self):
@@ -32,7 +34,13 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         self.wfile.write(b'Dashboard Page')
-
+    
+    def handle_redirect(self):
+        # Perform the redirection
+        self.send_response(302)  # 302 Found
+        self.send_header('Location', '/dashboard')  # Redirect to /dashboard
+        self.end_headers()
+        
 def main():
     PORT = 8000
     with socketserver.TCPServer(("", PORT), MyHandler) as httpd:

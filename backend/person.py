@@ -1,7 +1,7 @@
 import os
 import sqlite3
 import cgi 
-import myhandler 
+from myhandler import MyHandler 
 
 #connecting to sqlite3 database
 con = sqlite3.connect("medihacks.db")
@@ -26,6 +26,7 @@ class Person:
         self.post_dict = {}
         self.password = password
         self.logged_in = False
+        self.myhandler = MyHandler()
         
         try: 
             #creating table for students
@@ -61,12 +62,11 @@ class Person:
             
         if password == self.password:
             self.logged_in = True
-            return True
+            self.myhandler.handle_login()
              # Successful login; redirect to a dashboard or another page
             print("Location: dashboard.py")  # Redirect to the dashboard
         else:
             self.logged_in = False
-            return False
             # Failed login; redirect back to the login page with an error message
             print("Location: login.html?error=1")
     
