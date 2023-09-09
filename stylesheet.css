@@ -28,9 +28,10 @@ body{
     justify-content: center;
 }
 .account-boxes{
-    font-size: 300%;
+    min-width: min-content;
+    font-size: 5vw;
     overflow-x: hidden;
-
+    text-align: center;
     width: 15%;
     padding: 10px;
     margin: 5px;
@@ -40,7 +41,7 @@ body{
 }
 
 .account-boxes p{
-    font-size: 25%;
+    font-size: 1.25vw;
 }
 
 .welcome{
@@ -121,7 +122,7 @@ body{
   }
  */
  .in-field input:focus{
-    border: none;
+    transition: border-bottom .6s linear;
     outline: none;
  }
  .in-field input:focus::placeholder{
@@ -130,7 +131,9 @@ body{
     z-index: 3;
  }
 
+ 
 .no-account{
+    
     display: block;
     justify-content: center;
     align-items: center;
@@ -139,13 +142,20 @@ body{
   }
 
 .no-account > p{
-    
+    z-index: 1;
     margin-right: 10px;
 }
 
 .no-account > button{
+    z-index: 1;
     margin-left: 10px;
     border-radius: 5px;
     width: 10%;
 }
 
+.skyline{
+    border-radius: 10px;
+    z-index: -1;
+    opacity: .5;
+    width: 100%
+}
