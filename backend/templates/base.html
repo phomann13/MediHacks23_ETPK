@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--he used jinga and bootstrap-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device'width, initial-scale=1" />
+        <title>{% block title %}Home{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    <!-- loads in javascripts-->
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js')}}"
+        ></script>
+    </body>
+
+   
+</html>
