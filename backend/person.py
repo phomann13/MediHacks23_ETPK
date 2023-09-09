@@ -1,5 +1,8 @@
+import mysql.connector
+
 class Person:
     import #the file with the form info
+
     form = #the file with the form info.FieldStorage()
     #data1 = form.getvalue('__')
     #data2 = form.getvalue('__')
@@ -14,7 +17,19 @@ class Person:
         self.name = name
         self.institution = None 
         self.post_dict = {}
-       
+        
+        db = mysql.connector.connect(
+            host="localhost",
+            user="root", 
+            passwd="Tomh1015!",
+            database="medihacks23"
+            )
+
+        cursor = db.cursor()
+
+        cursor.execute("INSERT INTO students VALUES (%i, %s, %s, %s); ", 
+                (self.WEB_ID, self.username, self.name, self.institution))
+        
     
     def change_name(self, new_name):
         self.name = new_name
