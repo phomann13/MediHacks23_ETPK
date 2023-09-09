@@ -4,28 +4,40 @@ class Person:
     #data1 = form.getvalue('__')
     #data2 = form.getvalue('__')
     #....
+    tot_user = 0 #keep track of users joined, use to assign an web_id to each user
     
-    def __init__(self, name, uid, day, month, year):
-        self.uid = uid 
-        self.name = name
-        self.age_array = []
+    def __init__(self, username, name):
+        self.WEB_ID = Person.tot_user 
+        Person.tot_user += Person.tot_user + 1
         
-        self.age_array.append(day)
-        self.age_array.append(month)
-        self.age_array.append(year)
-
-    def change_uid(self, new_uid):
-        self.uid = new_uid
+        self.username = username 
+        self.name = name
+        self.institution = None 
+        self.post_dict = {}
+       
     
     def change_name(self, new_name):
         self.name = new_name
+        
+    def get_name(self):
+        return self.name
+        
+    def change_username(self, new_username):
+        self.username = new_username 
     
-    def change_age(self, day, month, year):
-        self.age_array[0] = day
-        self.age_array[1] = month
-        self.age_array[2] = year
+    def get_username(self):
+        return self.username 
     
-    def post(): #tbd 
+    def get_WEB_ID(self):
+       return self.WEB_ID 
+   
+    def get_post(self, title):
+        return self.post_dict[title]
     
+    def post(self, __):
+        #make post (fill out form)
+        #add post to self.post_dict 
+    
+
     
     

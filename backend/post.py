@@ -1,8 +1,7 @@
 class Post:
     
-    def __init__(self, ___):
-        
-        
+    def __init__(self, ___): 
+    
     def get_imptext(self):
         return #get improvement text from post
     
