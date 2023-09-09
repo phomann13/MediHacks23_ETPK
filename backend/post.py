@@ -1,34 +1,44 @@
-import cgi 
+import cgi
 import sqlite3
+from datetime import datetime
 
-#make in individual methods
-form = cgi.FieldStorage() 
+form = cgi.FieldStorage()
 
-# Connect to an SQLite database (creates or opens the 'mydatabase.db' file)
-#Make in individual methods
 conn = sqlite3.connect('mydatabase.db')
 cursor = conn.cursor()
-#DON'T FORGET conn.close()!!!
 
 class Post:
     
-    def __init__(self, ___): 
-    
+    def __init__(self, imptext, comments, institution, ment_rating, resource_rating, date_posted=None):
+        self.imptext = imptext
+        self.comments = comments
+        self.institution = institution.capitalize() # Standardizing institution name
+        self.ment_rating = ment_rating
+        self.resource_rating = resource_rating
+        self.date_posted = date_posted if date_posted else datetime.now() # If date is not provided, use the current date/time
+
+    def save_to_database(self):
+        try:
+            cursor.execute("INSERT INTO posts (imptext, comments, institution, ment_rating, resource_rating, date_posted) VALUES (?, ?, ?, ?, ?, ?);", 
+                (self.imptext, self.comments, self.institution, self.ment_rating, self.resource_rating, self.date_posted))
+            conn.commit()
+        except Exception as e:
+            print(f"Error saving post to database: {e}")
+
     def get_imptext(self):
-        return #get improvement text from post
-    
+        return self.imptext
+
     def get_comments(self):
-        return #get comments text from post
+        return self.comments
     
     def get_institution(self):
-        #capitalize text so it is standardized for all companies 
-        return #get institution from post
+        return self.institution
     
-    def date_of_post(self) #necessary? 
-        return #date of post
+    def date_of_post(self):
+        return self.date_posted
     
     def ment_rating(self):
-        return #get mental health rating 
+        return self.ment_rating
     
     def resource_rating(self):
-        return #get resource rating 
+        return self.resource_rating
