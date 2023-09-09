@@ -4,8 +4,8 @@ from datetime import datetime
 
 form = cgi.FieldStorage()
 
-conn = sqlite3.connect('mydatabase.db')
-cursor = conn.cursor()
+con = sqlite3.connect('mydatabase.db')
+cur = con.cursor()
 
 class Post:
     
@@ -15,13 +15,17 @@ class Post:
         self.institution = institution.capitalize() # Standardizing institution name
         self.ment_rating = ment_rating
         self.resource_rating = resource_rating
-        self.date_posted = date_posted if date_posted else datetime.now() # If date is not provided, use the current date/time
+        self.date_posted = date_posted if date_posted else datetime.now().strftime('%Y-%m-%d %H:%M:%S') # If date is not provided, use the current date/time
+        try: 
+            cur.execute("CREATE TABLE posts (imptext varchar(255), comments varchar(255), institution varchar(255), ment_rating int, resource_rating int, date_posted varchar(255))")
+        except sqlite3.OperationalError: 
+            print(f"table posts already exists")
 
     def save_to_database(self):
         try:
-            cursor.execute("INSERT INTO posts (imptext, comments, institution, ment_rating, resource_rating, date_posted) VALUES (?, ?, ?, ?, ?, ?);", 
+            cur.execute("INSERT INTO posts (imptext, comments, institution, ment_rating, resource_rating, date_posted) VALUES (?, ?, ?, ?, ?, ?);", 
                 (self.imptext, self.comments, self.institution, self.ment_rating, self.resource_rating, self.date_posted))
-            conn.commit()
+            con.commit()
         except Exception as e:
             print(f"Error saving post to database: {e}")
 
