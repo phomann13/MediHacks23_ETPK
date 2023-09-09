@@ -50,6 +50,26 @@ class Person:
             
     def login(self, password):
         # Check the provided password against the user's stored password
+        try:
+            db = mysql.connector.connect(
+                host=DB_HOST,
+                user=DB_USER,
+                passwd=DB_PASSWORD,
+                database=DB_NAME
+                )
+            
+            cursor = db.cursor()
+
+            cursor.execute("INSERT INTO students (WEB_ID, username, name, institution) VALUES (%s, %s, %s, %s);", 
+                    (self.WEB_ID, self.username, self.name, self.institution))
+            db.commit()
+
+        except mysql.connector.Error as err:
+            print(f"Error: {err}")
+        finally:
+            cursor.close()
+            db.close()
+            
         if password == self.password:
             self.logged_in = True
              # Successful login; redirect to a dashboard or another page
@@ -65,24 +85,11 @@ class Person:
         else:
             return "You must be logged in to change your name."
         
-    def get_name(self):
-        return self.name
-        
     def change_username(self, new_username):
         if self.logged_in:
             self.username = new_username 
         else:
             return "You must be logged in to change your name."
-    
-    def get_username(self):
-        return self.username 
- 
-    def get_post(self, title):
-        return self.post_dict[title]
-    
-    def post(self, __):
-        #make post (fill out form)
-        #add post to self.post_dict 
     
 
     
