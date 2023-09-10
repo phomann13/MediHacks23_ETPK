@@ -1,10 +1,18 @@
 
-
-{
+[{
     "title":"I MADE A POST",
     "inst_name":"UMD",
     "cult_rating":"4",
     "res_rating":"3",
     "cult_comment":"I dont like the culture",
     "res_comment":"I like the resources"
-}
+},
+
+{
+    "title":"Post 2",
+    "inst_name":"UVA",
+    "cult_rating":"5",
+    "res_rating":"1",
+    "cult_comment":"Culture's ok",
+    "res_comment":"Resources suck"
+}]
