@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}Display{% endblock %} {% block content
+    %}
+    <h1 align="center">Institution Reviews</h1>
+    <ul class="list-group list-group-flush" id="display">
+      <!--{% for review in db.reviews %}
+         graph data and show statistics 
+      {% endfor %}-->
+    </ul>
+    <form method="POST">
+      <textarea name="note" id="note" class="form-control"></textarea>
+      <br />
+      <div align="center">
+        <button type="submit" class="btn btn-primary">Add Review</button>
+      </div>
+    </form>
+    {% endblock %}
