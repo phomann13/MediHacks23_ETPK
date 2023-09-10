@@ -6,7 +6,7 @@
     <title>Sign up </title>
     <link rel="stylesheet" href="Stylesheets/signup-stylesheet.css">
     <script src="https://kit.fontawesome.com/b2aa740ecd.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+
     
 </head>
 <body>
@@ -28,74 +28,75 @@
                 </button>
             </div>
        
-            <form class="login">
+            <form id="myForm" class="login" name="myform" novalidate>
                 <div id="univ" class="univ_name">
                     <i class="fa-solid fa-building-columns"></i>
                     <label class="in-field">
-                        <input class="credent" type="name" required placeholder="University Name"/>
+                        <input class="credent" type="text" required name="Universityname" placeholder="University Name"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Email</span>--->
+                       
                     </label>
                 </div>
                 <div id = "indiv_nfirst" class="indiv_name">
                     <i class="fa-solid fa-person-circle-question"></i>
                     <label class="in-field">
-                        <input class="credent" type="name" required placeholder="First Name"/>
+                        <input class="credent" type="text" name="FirstName" required placeholder="First Name"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Email</span>--->
+                      
                     </label>
                 </div>
                 <div id = "indiv_nlast"class="indiv_name">
                     <i class="fa-solid fa-person-circle-question"></i>
                     <label class="in-field">
-                        <input class="credent" type="name" required placeholder="Last Name"/>
+                        <input class="credent" type="text" required name= "Last name" placeholder="Last Name"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Email</span>--->
+                       
                     </label>
                 </div>
                 <div class="name">
                     <i class="fa-solid fa-user"></i>
                     <label class="in-field">
-                        <input class="credent" type="name" required placeholder="Username"/>
+                        <input class="credent" type="text" required name = "Username" placeholder="Username"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Email</span>--->
+                        
                     </label>
                 </div>
                 <div class="email">
                     <i class="fa-solid fa-envelope"></i>
                     <label class="in-field">
-                        <input class="credent" type="email" required placeholder="Email"/>
+                        <input class="credent" type="email"  name="email" required placeholder="Email"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Email</span>--->
+                       
                     </label>
                 </div>
                     
                 <div class="password">
                     <i class="fa-solid fa-lock"></i>
                     <label class="in-field">
-                        <input class="credent" type="password" required placeholder="Password"/>
+                        <input class="credent" type="password" name="password" required placeholder="Password"/>
                         <span class="focus-border">
                             <i></i>
                         </span>
-                        <!---<span class="placeholder">Password</span>--->
+                        
                     </label>
                     
                 </div>
-                
-                <a href="Home.html"><input class= "signup" type="submit" value="Sign up" onclick=""></a>
+               <a href="Home.html"><input type="submit"></a>
             </form>
         </div>
     </div>
     
+    
 </body>
+<script src="index.js"></script>
 </html>
