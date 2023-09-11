@@ -1,0 +1,22 @@
+{
+  "name": "medihacks23_etpk",
+  "version": "1.0.0",
+  "description": "Medi Hacks Hackathon Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimiasami1378/MediHacks23_ETPK.git#Frontend"
+  },
+  "author": "Parker Homann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimiasami1378/MediHacks23_ETPK/issues"
+  },
+  "homepage": "https://github.com/kimiasami1378/MediHacks23_ETPK/tree/Frontend#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
